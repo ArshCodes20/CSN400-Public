@@ -1,25 +1,29 @@
 # Final Evaluation #1
  
 ### Table of Contents
-1. [Part A - Network Topology](#part-a---network-topology)
-2. [Part B - StudentAA](#part-b---studentaa)
+1. [Network Topology](#network-topology)
+2. [StudentAA](#studentaa)
    - [RouterAA](#routeraa)
    - [SwitchAA](#switchaa)
-3. [Part C - StudentBB](#part-c---studentbb)
+3. [StudentBB](#studentbb)
    - [RouterBB](#routerbb)
    - [SwitchBB](#switchbb)
-4. [Part D - StudentCC](#part-d---studentcc)
+4. [StudentCC](#studentcc)
    - [RouterCC](#routercc)
    - [SwitchCC](#switchcc)
-5. [Part E - StudentDD](#part-e---studentdd)
+5. [StudentDD](#studentdd)
    - [RouterDD](#routerdd)
    - [SwitchDD](#switchdd)
-6. [Part F - SSH](#part-f---ssh)
+6. [The Internet](#the-internet)
+7. [Reload Equipment](#reload-equipment)
+   - [Router](#router)
+   - [Switch-2960](#switch-2960)
+   - [Switch-3560](#switch-3560)
 
-### Part A - Network Topology 
+### Network Topology 
 - PLEASE DO NOT USE THIS DIAGRAM FOR YOUR PRE-LAB. THIS IS FOR REFRENCE ONLY!!!
 ![img1](./roughDiagram.PNG)
-### Part B - StudentAA
+### StudentAA
 #### RouterAA
 ```
 en
@@ -135,17 +139,16 @@ access-list 1 permit 172.16.154.0 0.0.0.255
 access-list 1 permit 172.16.50.0 0.0.0.255
 !
 ip nat inside source list 1 int gig 0/1 overload
+!
 ```
 ***
 - SSH
 ```
 !SSH setup script -- run this script separately!
-ip ssh port 2272 rotary 1
 crypto key generate rsa
 1024
 ip ssh version 2
 line vty 0 4
-rotary 1
 transport input ssh 
 login local
 username student72 password csn400
@@ -154,6 +157,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
+***
+
 #### SwitchAA
 ```
 en
@@ -192,6 +197,7 @@ ip address 172.16.250.72 255.255.255.0
 no shut
 !
 ip default-gateway 172.16.250.1
+!
 ```
 ***
 - SSH
@@ -209,7 +215,9 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
-### Part C - StudentBB
+***
+
+### StudentBB
 
 #### RouterBB
 ```
@@ -312,17 +320,16 @@ access-list 110 deny tcp any 172.16.51.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.154.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.50.0 0.0.0.255 eq 22
 access-list 110 permit ip any any
+!
 ```
 ***
 - SSH
 ```
 !SSH setup script -- run this script separately!
-ip ssh port 2251 rotary 1
 crypto key generate rsa
 1024
 ip ssh version 2
 line vty 0 4
-rotary 1
 transport input ssh 
 login local
 username student72 password csn400
@@ -331,6 +338,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
+***
+
 #### SwitchBB
 ```
 en
@@ -382,6 +391,7 @@ ip address 172.16.250.51 255.255.255.0
 no shut
 !
 ip default-gateway 172.16.250.1
+!
 ```
 ***
 - SSH
@@ -399,7 +409,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
-### Part D - StudentCC
+***
+### StudentCC
 #### RouterCC
 ```
 en
@@ -495,23 +506,24 @@ network 172.16.51.0 255.255.255.0
 network 172.16.154.0 255.255.255.0
 network 172.16.50.0 255.255.255.0
 !
+```
+```
 access-list 110 deny tcp any 192.168.72.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.72.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.51.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.154.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.50.0 0.0.0.255 eq 22
 access-list 110 permit ip any any
+!
 ```
 ***
 - SSH
 ```
 !SSH setup script -- run this script separately!
-ip ssh port 2254 rotary 1
 crypto key generate rsa
 1024
 ip ssh version 2
 line vty 0 4
-rotary 1
 transport input ssh 
 login local
 username student72 password csn400
@@ -520,6 +532,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
+***
+
 #### SwitchCC
 ```
 en
@@ -574,6 +588,7 @@ ip address 172.16.250.154 255.255.255.0
 no shut
 !
 ip default-gateway 172.16.250.1
+!
 ```
 ***
 - SSH
@@ -591,7 +606,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
-### Part E - StudentDD
+***
+### StudentDD
 #### RouterDD
 ```
 en
@@ -689,6 +705,8 @@ network 172.16.51.0 255.255.255.0
 network 172.16.154.0 255.255.255.0
 network 172.16.50.0 255.255.255.0
 !
+```
+```
 access-list 110 deny tcp any 192.168.72.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.72.0 0.0.0.255 eq 22
 access-list 110 deny tcp any 172.16.51.0 0.0.0.255 eq 22
@@ -702,17 +720,16 @@ access-list 1 permit 172.16.154.0 0.0.0.255
 access-list 1 permit 172.16.50.0 0.0.0.255
 !
 ip nat inside source list 1 int fa 0/1 overload
+!
 ```
 ***
-- SSH
+- SSH 
 ```
 !SSH setup script -- run this script separately!
-ip ssh port 2250 rotary 1
 crypto key generate rsa
 1024
 ip ssh version 2
 line vty 0 4
-rotary 1
 transport input ssh 
 login local
 username student72 password csn400
@@ -721,6 +738,8 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
+***
+
 #### SwitchDD
 ```
 en
@@ -759,6 +778,7 @@ ip address 172.16.250.50 255.255.255.0
 no shut
 !
 ip default-gateway 172.16.250.1
+!
 ```
 ***
 - SSH
@@ -776,13 +796,63 @@ username student154 password csn400
 username student50 password csn400
 exit
 ```
-### Part F - SSH
-- Syntax
+***
+### The Internet
 ```
-ssh studentxx@172.16.xx.x -p 22xx
+en
+conf t
+int fa 0/0
+ip address 18.0.72.2 255.255.255.252
+no shut
+ip access-group 120 in
+!
+int fa 0/1
+ip address 18.0.50.2 255.255.255.252
+no shut
+ip access-group 120 in
+!
+int lo1
+ip address 200.100.50.1 255.255.255.0
+no shut
+!
+access-list 120 deny ip 172.16.0.0 0.15.255.255 any
+access-list 120 deny ip 192.168.0.0 0.0.255.255 any
+access-list 120 permit ip any any
+!
+ip route 0.0.0.0 0.0.0.0 fa 0/0
+ip route 0.0.0.0 0.0.0.0 fa 0/1 50
 ```
-- Example
+### Reload Equipment
+#### Router
+- Commands
 ```
-ssh student72@172.16.72.3 -p 2272
+erase startup-config
 ```
+```
+reload
+```
+#### Switch 2960
+- Commands
+```
+delete vlan.dat
+```
+```
+erase nvram:
+```
+```
+reload
+```
+
+#### Switch 3560
+- Commands
+```
+delete vlan.dat
+```
+```
+write erase
+```
+```
+reload
+```
+
 
